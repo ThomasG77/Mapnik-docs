@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 2 – ‘Hello,world!’ using XML configuration &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Documentation writing guidelines" href="documentation_guidelines.html" />
+    <link rel="prev" title="Tutorial 1 – ‘Hello,world!’ in Python" href="GettingStarted-1.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="documentation_guidelines.html" title="Documentation writing guidelines"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GettingStarted-1.html" title="Tutorial 1 – ‘Hello,world!’ in Python"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial 2  &#8211; &#8216;Hello,world!&#8217; using XML configuration</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#etape-1">Etape 1</a></li>
+<li><a class="reference internal" href="#etape-2">Etape 2</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="GettingStarted-1.html"
+                        title="previous chapter">Tutorial 1 &#8211; &#8216;Hello,world!&#8217; in Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="documentation_guidelines.html"
+                        title="next chapter">Documentation writing guidelines</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutorial-2-hello-world-using-xml-configuration">
+<h1>Tutorial 2  &#8211; &#8216;Hello,world!&#8217; using XML configuration<a class="headerlink" href="#tutorial-2-hello-world-using-xml-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Make sure you have mapnik installed and you&#8217;ve successfully run through
+<a class="reference internal" href="GettingStarted-1.html"><em>GettingStarted Tutorial 1</em></a>.</p>
+<ul class="simple">
+<li>This page will guide you through using the Mapnik python bindings along with
+a separate XML file for your map styles.</li>
+<li>This is a useful approach to manage your map styles/rules separately from
+your python code, and can be advantageous for very complex formatting.
+Therefore, an XML configuration is used by the Open Street Map project to do
+intense filtering of PostGIS data by attribute.</li>
+</ul>
+<p>Two examples will be shown:</p>
+<p>1) An XML configuration that exactly matches the map output from the pure python
+example in <a class="reference internal" href="GettingStarted-1.html"><em>The Getting Started Tutorial 1</em></a>.</p>
+<ul class="simple">
+<li>This is intended to help new users see the common usage of Mapnik style and
+rule parameters.</li>
+<li>Note: These samples are intentionally sparse and do not take full advantage
+of Mapnik capabilities.<ul>
+<li>See the <a class="reference external" href="http://trac.mapnik.org/browser/trunk/demo/python/rundemo.py">rundemo.py</a> script in the
+downloads for more advanced usage of python bindings.</li>
+<li>See the <a class="reference external" href="http://trac.mapnik.org/browser/trunk/tests/data/good_maps/osm-styles.xml">OSM XML example</a>
+in the tests folder for more advanced usage of XML.</li>
+</ul>
+</li>
+</ul>
+<p>2) An XML configuration that uses a world borders dataset with population
+attributes to create a chloropleth map by population size.  This is intended to
+introduce the uses of rule filters and labeling in XML</p>
+<p>Note: the code for example 1, along with the code from <a class="reference internal" href="GettingStarted-1.html"><em>GettingStarted
+Tutorial 1</em></a> can be downloaded in a zip bundle from a link
+below. These downloads contain relative paths to a data folder where you
+should place the world_borders.shp.</p>
+</div>
+<div class="section" id="etape-1">
+<h2>Etape 1<a class="headerlink" href="#etape-1" title="Permalink to this headline">¶</a></h2>
+<p><strong>Hello World XML</strong></p>
+<p>First you will still need a python script that sets the basic map parameters
+and points to the XML config file:</p>
+<div class="highlight-python"><pre>#!/usr/bin/env python
+import mapnik mapfile = 'world_styles.xml'
+map_output = 'hello_world_using_xml_config.png'
+m = mapnik.Map(600, 300)
+mapnik.load_map(m, mapfile)
+bbox = mapnik.Envelope(mapnik.Coord(-180.0, -90.0), mapnik.Coord(180.0, 90.0))
+m.zoom_to_box(bbox)
+mapnik.render_to_file(m, map_output)</pre>
+</div>
+<ul class="simple">
+<li>Copy this code and save to a file called <strong>world_map.py</strong></li>
+</ul>
+<p>Next you will need to create the <strong>world_styles.xml</strong> file referenced in the
+<strong>world_map.py</strong></p>
+<p>Note: you will need to specify the path to the same Mapping Hacks
+<a class="reference external" href="http://mappinghacks.com/data/world_borders.zip">world borders shapefile</a>
+using in Tutorial 1</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE Map&gt;</span>
+<span class="nt">&lt;Map</span> <span class="na">bgcolor=</span><span class="s">&quot;steelblue&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Style</span> <span class="na">name=</span><span class="s">&quot;My Style&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#f2eff9<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+      <span class="nt">&lt;LineSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke&quot;</span><span class="nt">&gt;</span>rgb(50%,50%,50%)<span class="nt">&lt;/CssParameter&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke-width&quot;</span><span class="nt">&gt;</span>0.1<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/LineSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+  <span class="nt">&lt;/Style&gt;</span>
+  <span class="nt">&lt;Layer</span> <span class="na">name=</span><span class="s">&quot;world&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;StyleName&gt;</span>My
+      Style<span class="nt">&lt;/StyleName&gt;</span>
+    <span class="nt">&lt;Datasource&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>shape<span class="nt">&lt;/Parameter&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">&gt;</span>/path/to/your/world_borders<span class="nt">&lt;/Parameter&gt;</span>
+    <span class="nt">&lt;/Datasource&gt;</span>
+  <span class="nt">&lt;/Layer&gt;</span>
+<span class="nt">&lt;/Map&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Copy this XML and save to a file called <strong>world_styles.xml</strong> beside the
+<strong>world_map.py</strong> script</li>
+</ul>
+<p>Now run that script with this command:</p>
+<div class="highlight-bash"><div class="highlight"><pre>python world_map.py
+</pre></div>
+</div>
+<ul class="simple">
+<li>It should output a png graphic in the same folder that matches the Getting
+Started Tutorial.</li>
+</ul>
+</div>
+<div class="section" id="etape-2">
+<h2>Etape 2<a class="headerlink" href="#etape-2" title="Permalink to this headline">¶</a></h2>
+<p><strong>World Population XML</strong></p>
+<p>Attached below and included as code samples, here is a sample python script that
+accesses a <strong>population.xml map configuration.</strong></p>
+<p>Note: you will need to download the <a class="reference external" href="http://trac.mapnik.org/attachment/wiki/XMLGettingStarted/world_borders.zip">modified world borders shapefile</a>.</p>
+<ul class="simple">
+<li>Note: This file is originally from <a class="reference external" href="http://thematicmapping.org/downloads/world_borders.php">Thematic Mapping Blog</a>. The version
+attached here is the simpler shapefile provided there with some modification
+made to avoid problems that occur when displaying the map in projections such
+as 900913/3785 (this tutorial does not use this projection so you can use the
+original shapefiles as well).  See <a class="reference external" href="http://trac.mapnik.org/ticket/308">ticket 308</a> for details.</li>
+</ul>
+<p>This script should result in a graphic like this:</p>
+<div class="figure" id="worldpop">
+<img alt="_images/world_population_minimized.png" src="_images/world_population_minimized.png" />
+</div>
+<div class="highlight-python"><pre>#!/usr/bin/env python
+
+import mapnik mapfile = "population.xml"
+m = mapnik.Map(1400, 600)
+mapnik.load_map(m, mapfile)
+bbox = mapnik.Envelope(mapnik.Coord(-180.0, -75.0), mapnik.Coord(180.0, 90.0))
+m.zoom_to_box(bbox)
+mapnik.render_to_file(m, 'world_population.png', 'png')</pre>
+</div>
+<p>And here is the xml file:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE Map&gt;</span>
+<span class="c">&lt;!-- Sample Mapnik XML template by Dane Springmeyer --&gt;</span>
+<span class="nt">&lt;Map</span> <span class="na">bgcolor=</span><span class="s">&quot;white&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Style</span> <span class="na">name=</span><span class="s">&quot;population&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="c">&lt;!-- Built from Seven Class sequential YIGnBu from www.colorbrewer.org --&gt;</span>
+      <span class="c">&lt;!-- Quantile breaks originally from QGIS layer classification --&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] = 0 <span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#ffffcc<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+      <span class="c">&lt;!-- Outlines for Antarctica look good --&gt;</span>
+      <span class="nt">&lt;LineSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke&quot;</span><span class="nt">&gt;</span>black<span class="nt">&lt;/CssParameter&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke-width&quot;</span><span class="nt">&gt;</span>.1<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/LineSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span> 0 and [POP2005] <span class="ni">&amp;lt;</span> 15000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#c7e9b4<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+      <span class="c">&lt;!-- Outlines for Antarctica look good --&gt;</span>
+      <span class="nt">&lt;LineSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke&quot;</span><span class="nt">&gt;</span>black<span class="nt">&lt;/CssParameter&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke-width&quot;</span><span class="nt">&gt;</span>.1<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/LineSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 15000 and [POP2005] <span class="ni">&amp;lt;</span> 255000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#7fcdbb<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 255000 and [POP2005] <span class="ni">&amp;lt;</span> 1300000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#1d91c0<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 1300000 and [POP2005] <span class="ni">&amp;lt;</span> 4320000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#41b6c3<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 4320000 and [POP2005] <span class="ni">&amp;lt;</span> 9450000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#225ea8<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 9450000 and [POP2005] <span class="ni">&amp;lt;</span> 25650000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#225ea8<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 25650000 and [POP2005] <span class="ni">&amp;lt;</span> 1134000000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#122F7F<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;ElseFilter/&gt;</span>
+      <span class="c">&lt;!-- This will catch all other values - in this case just India and China --&gt;</span>
+      <span class="c">&lt;!-- A dark red polygon fill and black outline is used here to highlight these two countries --&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>darkred<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+      <span class="nt">&lt;LineSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke&quot;</span><span class="nt">&gt;</span>black<span class="nt">&lt;/CssParameter&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke-width&quot;</span><span class="nt">&gt;</span>.7<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/LineSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+  <span class="nt">&lt;/Style&gt;</span>
+  <span class="nt">&lt;Style</span> <span class="na">name=</span><span class="s">&quot;countries_label&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="c">&lt;!--  Only label those countries with over 9 Million People --&gt;</span>
+      <span class="c">&lt;!--  Note: Halo and Fill are reversed to try to make them subtle --&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 4320000 and [POP2005] <span class="ni">&amp;lt;</span> 9450000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;TextSymbolizer</span> <span class="na">name=</span><span class="s">&quot;NAME&quot;</span> <span class="na">face_name=</span><span class="s">&quot;DejaVu Sans Bold&quot;</span> <span class="na">size=</span><span class="s">&quot;7&quot;</span> <span class="na">fill=</span><span class="s">&quot;black&quot;</span> <span class="na">halo_fill=</span><span class="s">&quot;#DFDBE3&quot;</span> <span class="na">halo_radius=</span><span class="s">&quot;1&quot;</span> <span class="na">wrap_width=</span><span class="s">&quot;20&quot;</span> <span class="na">spacing=</span><span class="s">&quot;5&quot;</span> <span class="na">allow_overlap=</span><span class="s">&quot;false&quot;</span> <span class="na">avoid_edges=</span><span class="s">&quot;false&quot;</span> <span class="na">min_distance=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="c">&lt;!--  Only label those countries with over 9 Million People --&gt;</span>
+      <span class="c">&lt;!--  Note: Halo and Fill are reversed to try to make them subtle --&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 9450000 and [POP2005] <span class="ni">&amp;lt;</span> 25650000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;TextSymbolizer</span> <span class="na">name=</span><span class="s">&quot;NAME&quot;</span> <span class="na">face_name=</span><span class="s">&quot;DejaVu Sans Book&quot;</span> <span class="na">size=</span><span class="s">&quot;9&quot;</span> <span class="na">fill=</span><span class="s">&quot;black&quot;</span> <span class="na">halo_fill=</span><span class="s">&quot;#DFDBE3&quot;</span> <span class="na">halo_radius=</span><span class="s">&quot;1&quot;</span> <span class="na">wrap_width=</span><span class="s">&quot;20&quot;</span> <span class="na">spacing=</span><span class="s">&quot;5&quot;</span> <span class="na">allow_overlap=</span><span class="s">&quot;false&quot;</span> <span class="na">avoid_edges=</span><span class="s">&quot;false&quot;</span> <span class="na">min_distance=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="c">&lt;!--  Those with over 25 Million get larger labels --&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 25650000 and [POP2005] <span class="ni">&amp;lt;</span> 1134000000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;TextSymbolizer</span> <span class="na">name=</span><span class="s">&quot;NAME&quot;</span> <span class="na">face_name=</span><span class="s">&quot;DejaVu Sans Book&quot;</span> <span class="na">size=</span><span class="s">&quot;12&quot;</span> <span class="na">fill=</span><span class="s">&quot;white&quot;</span> <span class="na">halo_fill=</span><span class="s">&quot;#2E2F39&quot;</span> <span class="na">halo_radius=</span><span class="s">&quot;1&quot;</span> <span class="na">wrap_width=</span><span class="s">&quot;20&quot;</span> <span class="na">spacing=</span><span class="s">&quot;5&quot;</span> <span class="na">allow_overlap=</span><span class="s">&quot;false&quot;</span> <span class="na">avoid_edges=</span><span class="s">&quot;true&quot;</span> <span class="na">min_distance=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="c">&lt;!--  Those with over 25 Million get larger labels --&gt;</span>
+      <span class="c">&lt;!--  Note: allow_overlap is true here to allow India to sneak through --&gt;</span>
+      <span class="nt">&lt;Filter&gt;</span>[POP2005] <span class="ni">&amp;gt;</span>= 1134000000<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;TextSymbolizer</span> <span class="na">name=</span><span class="s">&quot;NAME&quot;</span> <span class="na">face_name=</span><span class="s">&quot;DejaVu Sans Book&quot;</span> <span class="na">size=</span><span class="s">&quot;15&quot;</span> <span class="na">fill=</span><span class="s">&quot;white&quot;</span> <span class="na">halo_fill=</span><span class="s">&quot;black&quot;</span> <span class="na">halo_radius=</span><span class="s">&quot;1&quot;</span> <span class="na">wrap_width=</span><span class="s">&quot;20&quot;</span> <span class="na">spacing=</span><span class="s">&quot;5&quot;</span> <span class="na">allow_overlap=</span><span class="s">&quot;true&quot;</span> <span class="na">avoid_edges=</span><span class="s">&quot;true&quot;</span> <span class="na">min_distance=</span><span class="s">&quot;10&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+  <span class="nt">&lt;/Style&gt;</span>
+  <span class="nt">&lt;Layer</span> <span class="na">name=</span><span class="s">&quot;countries&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span> <span class="na">status=</span><span class="s">&quot;on&quot;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Style order determines layering hierarchy --&gt;</span>
+    <span class="c">&lt;!-- Labels go on top so they are listed second --&gt;</span>
+    <span class="nt">&lt;StyleName&gt;</span>population<span class="nt">&lt;/StyleName&gt;</span>
+    <span class="nt">&lt;StyleName&gt;</span>countries_label<span class="nt">&lt;/StyleName&gt;</span>
+    <span class="nt">&lt;Datasource&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>shape<span class="nt">&lt;/Parameter&gt;</span>
+      <span class="c">&lt;!-- FIXME --&gt;</span>
+      <span class="c">&lt;!-- Note:  &#39;TM_WORLD_BORDERS_SIMPL-0.3&#39; is the name of the shapefile (without the .shp file extension) --&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">&gt;</span>/PATH/TO/THE/TM_WORLD_BORDERS_SIMPL-0.3<span class="nt">&lt;/Parameter&gt;</span>
+    <span class="nt">&lt;/Datasource&gt;</span>
+  <span class="nt">&lt;/Layer&gt;</span>
+<span class="nt">&lt;/Map&gt;</span>
+</pre></div>
+</div>
+<p>Attached files</p>
+<p><a class="reference download internal" href="_downloads/hello_world.zip"><tt class="xref download docutils literal"><span class="pre">hello_world.zip</span></tt></a> - Tutorial for Hello World Mapnik examples using pure python and XML config file.</p>
+<p><a class="reference download internal" href="_downloads/world_population.png"><tt class="xref download docutils literal"><span class="pre">world_population.png</span></tt></a> Map graphic output of Step 2 using XML configuration to display chloropleth map of world population.</p>
+<p><a class="reference download internal" href="_downloads/world_population_minimized.png"><tt class="xref download docutils literal"><span class="pre">world_population_minimized.png</span></tt></a> - Minimized version of the output of Step 2 for trac display.</p>
+<p><a class="reference download internal" href="_downloads/world_borders.zip"><tt class="xref download docutils literal"><span class="pre">world_borders.zip</span></tt></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="documentation_guidelines.html" title="Documentation writing guidelines"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GettingStarted-1.html" title="Tutorial 1 – ‘Hello,world!’ in Python"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

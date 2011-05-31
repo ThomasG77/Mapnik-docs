@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutoriel 1 – ‘Hello,world!’ en Python &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Tutoriel 2 – ‘Hello,world!’ en utilisant la configuration XML" href="XMLGettingStarted.html" />
+    <link rel="prev" title="Installer la librairie Mapnik" href="install_mapnik_library.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="XMLGettingStarted.html" title="Tutoriel 2 – ‘Hello,world!’ en utilisant la configuration XML"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="install_mapnik_library.html" title="Installer la librairie Mapnik"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table des matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutoriel 1 &#8211; &#8216;Hello,world!&#8217; en Python</a><ul>
+<li><a class="reference internal" href="#etape-1">Etape 1</a></li>
+<li><a class="reference internal" href="#etape-2">Etape 2</a></li>
+<li><a class="reference internal" href="#etape-3">Etape 3</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="install_mapnik_library.html"
+                        title="Chapitre précédent">Installer la librairie Mapnik</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="XMLGettingStarted.html"
+                        title="Chapitre suivant">Tutoriel 2  &#8211; &#8216;Hello,world!&#8217; en utilisant la configuration XML</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tutoriel-1-hello-world-en-python">
+<h1>Tutoriel 1 &#8211; &#8216;Hello,world!&#8217; en Python<a class="headerlink" href="#tutoriel-1-hello-world-en-python" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="etape-1">
+<h2>Etape 1<a class="headerlink" href="#etape-1" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Assurez- vous d&#8217;avoir mapnik installé. En fonction de votre chemin
+d&#8217;installation, vous aurez peut-être besoin de modifier le chemin python
+PYTHONPATH, /etc/ld.so.conf, d&#8217;exporter LD_LIBRARY_PATH ou de faire n&#8217;importe
+quelle modification nécessaire au fonctionnement du système.</p>
+<p>La manière la plus simple de faire cette vérification est de démarrer
+l&#8217;interpréteur python à partir de la ligne de commande en tapant python
+et ensuite de taper simplement:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mapnik</span>
+</pre></div>
+</div>
+<p>et si vous n&#8217;avez pas de messages d&#8217;erreur, vous êtes sur le bon chemin. Dans
+le cas contraire, vous allez devoir encore vérifier votre installation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Si vous avez compilé mapnik en mode debug, vous devriez voir
+apparaître le listing des sources de données utilisables, incluant:</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mapnik</span>
+<span class="go">registered datasource : gdal</span>
+<span class="go">registered datasource : postgis</span>
+<span class="go">registered datasource : raster</span>
+<span class="go">registered datasource : shape</span>
+</pre></div>
+</div>
+<p>Pour obtenir ce listing, vous avez aussi la possibilité de faire</p>
+<div class="highlight-python"><pre>python -c "from mapnik import DatasourceCache as c;print ','.join(c.plugin_names())"</pre>
+</div>
+</div>
+<div class="section" id="etape-2">
+<h2>Etape 2<a class="headerlink" href="#etape-2" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le code ci-dessous peut être coller dans votre interpréteur python. Idéalement,
+copier ligne par ligne le code pour confirmer que chaque étape fonctionne. Les
+lignes commentées (#) devrait pouvoir être collées sans problème mais la
+configuration de votre interpréteur pourra dans certains cas causer des erreurs.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Voir le bout de code (snippet) à l&#8217;étape 3 pour un code sans commentaires.</li>
+</ul>
+</div></blockquote>
+<p>Importer la librairie mapnik et définir des paramètres basiques pour la carte</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapnik</span>
+
+<span class="c"># Instantiate a map object with given width, height and spatial reference</span>
+<span class="c"># system</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="c"># Set background colour to &#39;steelblue&#39;.</span>
+<span class="c"># You can use &#39;named&#39; colours, #rrggbb, #rgb or rgb(r%,g%,b%) format</span>
+<span class="n">m</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;steelblue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Mapnik accepte toutes les projections que supporte PROJ4. Allez sur
+<a class="reference external" href="http://spatialreference.org">http://spatialreference.org</a> pour obtenir les chaînes de caractères PROJ4
+pour les différentes projections. Par exemple,
+<a class="reference external" href="http://spatialreference.org/ref/epsg/4326/mapnikpython/">http://spatialreference.org/ref/epsg/4326/mapnikpython/</a> vous donnera les
+paramètres exacts pour la projection EPSG 4326 (utilisée dans les GPS par
+exemple).</p>
+</div>
+<p>Créer les styles et les règles pour la symbologie de la carte</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Now lets create a style and add it to the Map.</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
+<span class="c"># A Style can have one or more rules. A rule consists of a filter, min/max</span>
+<span class="c"># scale demoninators and 1..N Symbolizers. If you don&#39;t specify filter and</span>
+<span class="c"># scale denominators you get default values :</span>
+<span class="c">#   Filter =  &#39;ALL&#39; filter (meaning symbolizer(s) will be applied to all</span>
+<span class="c">#   features)</span>
+<span class="c">#   MinScaleDenominator = 0</span>
+<span class="c">#   MaxScaleDenominator = INF</span>
+<span class="c"># Lets keep things simple and use default value, but to create a map we</span>
+<span class="c"># we still must provide at least one Symbolizer. Here we  want to fill</span>
+<span class="c"># countries polygons with greyish colour and draw outlines with a bit</span>
+<span class="c"># darker stroke.</span>
+
+<span class="n">r</span><span class="o">=</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">PolygonSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;#f2eff9&#39;</span><span class="p">)))</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">LineSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;rgb(50%,50%,50%)&#39;</span><span class="p">),</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Faire le lien entre les informations de style et celles de votre carte et de
+votre donnée</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Here we have to add our style to the Map, giving it a name.</span>
+<span class="n">m</span><span class="o">.</span><span class="n">append_style</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c"># Here we instantiate our data layer, first by giving it a name and srs</span>
+<span class="c"># (proj4 projections string), and then by giving it a datasource.</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Layer</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="c"># Then provide the full filesystem path to a shapefile in WGS84 or</span>
+<span class="c"># EPSG 4326 projection without the .shp extension</span>
+<span class="c"># A sample shapefile can be downloaded from</span>
+<span class="c"># http://mapnik-utils.googlecode.com/svn/data/world_borders.zip</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">datasource</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Shapefile</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;/Users/path/to/your/data/world_borders&#39;</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">styles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Enfin, ajouter les couches à la carte et zoomer sur l&#8217;étendue maximale de la couche.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">m</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zoom_to_box</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">envelope</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Finir en générant l&#8217;image de la carte du monde</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!python</span>
+<span class="c"># Write the data to a png image called world.png in the base directory of your user</span>
+<span class="n">mapnik</span><span class="o">.</span><span class="n">render_to_file</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s">&#39;world.png&#39;</span><span class="p">,</span> <span class="s">&#39;png&#39;</span><span class="p">)</span>
+
+<span class="c"># Exit the python interpreter</span>
+<span class="nb">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ensuite revenir dans votre terminal:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># On a mac</span>
+open world.png
+<span class="c"># On windows</span>
+start world.png
+</pre></div>
+</div>
+<p>Ou naviguer dans votre répertoire et ouvrir world.png avec un résultat qui
+devrait ressembler à celui-ci-dessous:</p>
+<div class="figure" id="world">
+<img alt="_images/world.png" src="_images/world.png" />
+</div>
+</div>
+<div class="section" id="etape-3">
+<h2>Etape 3<a class="headerlink" href="#etape-3" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;étape suivante la plus logique est le lancement de ce même code depuis un
+script python lancé via votre terminal. De cette manière, vous serez capable
+de modifier et d&#8217;expérimenter des changements de paramètres.</p>
+<p>Cette étape peut être réalisée en ajoutant la ligne suivante au début du script:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+</pre></div>
+</div>
+<p>Copier tout le texte ci-dessous et l&#8217;enregistrer dans un fichier portant le
+nom world.py.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">mapnik</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
+<span class="n">r</span><span class="o">=</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">PolygonSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;#f2eff9&#39;</span><span class="p">)))</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">LineSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;rgb(50%,50%,50%)&#39;</span><span class="p">),</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">append_style</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Layer</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">datasource</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Shapefile</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;/Users/path/to/your/data/world_borders&#39;</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">styles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zoom_to_box</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">envelope</span><span class="p">())</span>
+<span class="n">mapnik</span><span class="o">.</span><span class="n">render_to_file</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="s">&#39;world.png&#39;</span><span class="p">,</span> <span class="s">&#39;png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>N&#8217;oubliez pas de changer le chemin pour qu&#8217;il pointe vers votre
+fichier shp world_borders.</p>
+<ul class="last simple">
+<li>Mapnik supporte aussi bien les chemins absolus que relatifs vers vos
+données.</li>
+<li>Il en est de même pour le chemin de votre fichier.</li>
+</ul>
+</div>
+<p>Ensuite rendre le script exécutable. Sur Mac ou Linux, vous ferez cela avec la
+commande:</p>
+<div class="highlight-bash"><div class="highlight"><pre>chmod +x world.py
+</pre></div>
+</div>
+<p>Lancer le script avec la commande:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># You must be in the same directory as you saved the script</span>
+./world.py
+<span class="c"># Add a second optional command to open the resulting file with one</span>
+<span class="c"># keystroke</span>
+<span class="c"># On a mac</span>
+./world.py; open world.png
+<span class="c"># On windows</span>
+start world.py <span class="o">&amp;&amp;</span> start world.png
+</pre></div>
+</div>
+<ul class="simple">
+<li>Lancer de cette manière le script permettra d&#8217;écraser le fichier et d&#8217;ouvrir
+la carte world.png.</li>
+<li>Maintenant, vous pouvez facilement ouvrir le script dans un éditeur de texte
+et essayer de changer les dimensions, les couleurs ou la source de donnée
+(en n&#8217;oubliant pas de choisir la bonne projection).</li>
+</ul>
+<p>Pour générer la même carte avec XML, lisez le
+<a class="reference internal" href="XMLGettingStarted.html"><em>Commencez avec mapnik et le XML (tutoriel 2)</em></a> qui
+montre l&#8217;usage du XML pour la configuration de la carte.</p>
+<p>Pour télécharger, ce script ainsi avec d&#8217;autres scripts de tutoriels,
+voir <a class="reference external" href="http://code.google.com/p/mapnik-utils/">http://code.google.com/p/mapnik-utils/</a></p>
+<p>Pièce jointe <a class="reference download internal" href="_downloads/world.png"><tt class="xref download docutils literal"><span class="pre">world.png</span></tt></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="XMLGettingStarted.html" title="Tutoriel 2 – ‘Hello,world!’ en utilisant la configuration XML"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="install_mapnik_library.html" title="Installer la librairie Mapnik"
+             >précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

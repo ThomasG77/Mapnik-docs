@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mapnik &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Mapnik documentation" href="index.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Mapnik documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mapnik</a><ul>
+<li><a class="reference internal" href="#history">History</a></li>
+<li><a class="reference internal" href="#community">Community</a></li>
+<li><a class="reference internal" href="#platforms">Platforms</a></li>
+<li><a class="reference internal" href="#supported-data-formats">Supported data formats</a></li>
+<li><a class="reference internal" href="#future">Future</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Mapnik documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="next chapter">Getting Started</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mapnik">
+<h1>Mapnik<a class="headerlink" href="#mapnik" title="Permalink to this headline">¶</a></h1>
+<p>Mapnik is about making beautiful maps. It uses the <a class="reference external" href="http://www.antigrain.com/">AGG library</a> or <a class="reference external" href="http://www.cairographics.org/">Cairo library</a> and offers world class anti-aliasing
+rendering with subpixel accuracy for geographic data. It is written
+from scratch in modern C++ and doesn&#8217;t suffer from design decisions
+made a decade ago. When it comes to handling common software tasks
+such as memory management, filesystem access, regular expressions,
+parsing and so on, Mapnik doesn&#8217;t re-invent the wheel, but utilizes
+best of breed industry standard libraries from <a class="reference external" href="http://boost.org">http://boost.org</a>.</p>
+<div class="section" id="history">
+<h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
+<p>Mapnik was started in a warm June afternoon in 2005 by Artem
+Pavlenko. First version was released in ...</p>
+<p>Current version is 0.7.1 available for download at
+<a class="reference external" href="http://mapnik.org/download/">http://mapnik.org/download/</a>.</p>
+</div>
+<div class="section" id="community">
+<h2>Community<a class="headerlink" href="#community" title="Permalink to this headline">¶</a></h2>
+<p>Mapnik community is organized around main site <a class="reference external" href="http://mapnik.org">http://mapnik.org</a> and
+development site <a class="reference external" href="http://trac.mapnik.org">http://trac.mapnik.org</a> on which you can find latest
+news about Mapnik and its development. Development site is organized
+like a wiki which contains a lot of useful information, and you can
+freely contribute if you <a class="reference external" href="http://trac.mapnik.org/register">sign up</a>.</p>
+<p>Also you can ask questions on mailing lists <a class="reference external" href="http://lists.berlios.de/mailman/listinfo/mapnik-users">mapnik-users</a> and if you
+want to help developing Mapnik check out <a class="reference external" href="http://lists.berlios.de/mailman/listinfo/mapnik-devel">mapnik-devel</a>. On this
+links you will also find mailing list archive, which you should check
+before asking your question. You can follow mailing lists on <a class="reference external" href="http://old.nabble.com/Mapnik-f28006.html">Nabble</a>.</p>
+<p>If you like more direct communication you can find us on <strong>#mapnik</strong> at
+irc.freenode.net, feel free to drop in with your question anytime.</p>
+</div>
+<div class="section" id="platforms">
+<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h2>
+<p>Mapnik is a cross platform toolkit that runs on Windows, Mac, and
+Linux (since release 0.4). Users commonly run Mapnik on Mac &gt;=10.4.x
+(both intel and PPC), as well as Debian/Ubuntu, Fedora, Centos,
+OpenSuse, and FreeBSD.</p>
+</div>
+<div class="section" id="supported-data-formats">
+<h2>Supported data formats<a class="headerlink" href="#supported-data-formats" title="Permalink to this headline">¶</a></h2>
+<p>Mapnik uses a plugin architecture to read different
+datasources. Current plugins which are considered stable, and built by
+default, are:</p>
+<ul class="simple">
+<li><em>shape</em> - support for accessing <a class="reference external" href="http://en.wikipedia.org/wiki/Shapefile">ESRI Shape</a> files</li>
+<li><em>postgis</em> - support for accessing geospatial data through <a class="reference external" href="http://en.wikipedia.org/wiki/PostGIS">PostGIS</a>, the spatial database
+extension for <a class="reference external" href="http://en.wikipedia.org/wiki/PostgreSQL">PostgreSQL</a></li>
+<li><em>raster</em> - stripped or tiled raster TIFF image dataset support</li>
+</ul>
+<p>Other plugins are not unstable but as they were added later in
+development and there could still be some issues:</p>
+<ul class="simple">
+<li><em>gdal</em> - support for <a class="reference external" href="http://www.gdal.org/formats_list.html">GDAL</a>
+datasets</li>
+<li><em>ogr</em> - support for <a class="reference external" href="http://www.gdal.org/ogr/ogr_formats.html">OGR</a> datasets</li>
+<li><em>osm</em> - support reading <a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a> XML dataset</li>
+<li><em>sqlite</em> - support for <a class="reference external" href="http://en.wikipedia.org/wiki/SQLite">SQLite</a> / <a class="reference external" href="http://www.gaia-gis.it/spatialite">Spatialite</a> sql vector format</li>
+<li><em>occi</em> - support for <a class="reference external" href="http://en.wikipedia.org/wiki/Oracle_Spatial">oracle spatial</a> 10g (versions
+10.2.0.x) sql vector format</li>
+<li><em>kismet</em> - support for <a class="reference external" href="http://www.kismetwireless.net/">kismet</a>
+GPS support shows little WLAN nodes on the map</li>
+<li><em>rasterlite</em> - support for <a class="reference external" href="http://www.gaia-gis.it/spatialite">Rasterlite</a> sqlite raster with wavelet
+compression</li>
+</ul>
+<p>More data access plug-ins will be available in the future. If you
+cannot wait and/or like coding in C++, why not write your own data
+access plug-in?</p>
+</div>
+<div class="section" id="future">
+<h2>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h2>
+<p>Large number of developers and contributors are actively developing
+<em>mapnik2</em> which will become <strong>0.8.0</strong>. Also, version <strong>0.7.2</strong> is
+scheduled to be released shortly.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Mapnik documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

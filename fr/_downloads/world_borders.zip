@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+
+
+  
+
+  <head>
+    <title>
+      Attachment –
+      Mapnik Wiki &amp; Documentation – Trac
+    </title><link rel="search" href="/search" /><link rel="help" href="/wiki/TracGuide" /><link rel="alternate" href="/raw-attachment/wiki/XMLGettingStarted/world_borders.zip" type="application/zip; charset=iso-8859-15" title="Original Format" /><link rel="up" href="/wiki/XMLGettingStarted" title="XMLGettingStarted" /><link rel="start" href="/wiki" /><link rel="stylesheet" href="/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/chrome/common/css/code.css" type="text/css" /><link rel="shortcut icon" href="/chrome/site/favicon.ico" type="image/x-icon" /><link rel="icon" href="/chrome/site/favicon.ico" type="image/x-icon" /><link type="application/opensearchdescription+xml" rel="search" href="/search/opensearch" title="Search Mapnik Wiki &amp; Documentation" /><script type="text/javascript" src="/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/chrome/common/js/trac.js"></script><script type="text/javascript" src="/chrome/common/js/search.js"></script><script type="text/javascript" src="/chrome/common/js/ie_pre7_hacks.js"></script>
+    <link rel="stylesheet" type="text/css" href="/chrome/site/style.css" />
+  </head>
+  <body>
+    <div id="siteheader">
+    </div>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="http://mapnik.org/"><img src="/chrome/site/mapnik-logo.png" alt="mapnik" height="70" width="240" /></a>
+      </div>
+      <form id="search" action="/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/login">Login</a></li><li><a href="/wiki/TracGuide">Help/Guide</a></li><li><a href="/about">About Trac</a></li><li><a href="/prefs">Preferences</a></li><li class="last"><a href="/register">Register</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="/wiki">Home</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/roadmap">Roadmap</a></li><li><a href="/browser">Browse Source</a></li><li><a href="/report">View Tickets</a></li><li><a href="/search">Search</a></li><li class="last"><a href="/stractistics">Stractistics</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+            <li class="first last"><a href="/wiki/XMLGettingStarted">Back to XMLGettingStarted</a></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="attachment">
+        <h1><a href="/wiki/XMLGettingStarted">XMLGettingStarted</a>: world_borders.zip</h1>
+        <table id="info" summary="Description">
+          <tbody>
+            <tr>
+              <th scope="col">
+                File world_borders.zip, <span title="301931 bytes">294.9 kB</span>
+                (added by springmeyer,  <a class="timeline" href="/timeline?from=2010-03-19T21%3A34%3A37Z-0500&amp;precision=second" title="2010-03-19T21:34:37Z-0500 in Timeline">14 months</a> ago)
+              </th>
+            </tr>
+            <tr>
+              <td class="message searchable">
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="preview" class="searchable">
+      <p>
+        <strong>HTML preview not available</strong>,
+            since the file size exceeds 262144 bytes.
+        Try <a href="/raw-attachment/wiki/XMLGettingStarted/world_borders.zip">downloading</a> the file instead.
+      </p>
+        </div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="/raw-attachment/wiki/XMLGettingStarted/world_borders.zip">Original Format</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">
+        Powered by <a href="/about"><strong>Trac 0.11.1</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.
+      </p>
+      <p class="right">Visit the Trac open source project at<br /><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+    <div id="sitefooter">
+    </div>
+  
+  <!-- Google Analytics Widget Code -->
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  jQuery(document).ready( function() {
+    var pageTracker = _gat._getTracker("UA-408098-11");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    jQuery('a').each( function() {
+      var url;
+      if ( this.href.match("http:\/\/trac.mapnik.org") ) {
+        if ( this.href.match(/\.(zip|tar|tar.gz|tar.bzip|egg)$/) ) {
+          url = this.pathname + this.search;
+        };
+      } else {
+        var port = '';
+        if ( this.port != '') port = ':'+this.port;
+        url = '/external/' + this.hostname + port + this.pathname + this.search;
+      };
+      if ( url ) {
+        if ( ! url.match('^\/attachment\/') ) {
+          jQuery(this).click( function() {
+            pageTracker._trackPageview(url);
+          });
+        };
+      };
+    });
+  });
+</script>
+</body>
+</html>

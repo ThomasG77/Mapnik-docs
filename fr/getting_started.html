@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Débuter &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Installation de la base PostGIS" href="install_postgis_database.html" />
+    <link rel="prev" title="Mapnik" href="about_mapnik.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="install_postgis_database.html" title="Installation de la base PostGIS"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="about_mapnik.html" title="Mapnik"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table des matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Débuter</a><ul>
+<li><a class="reference internal" href="#de-quoi-a-t-on-besoin-pour-debuter">De quoi a-t-on besoin pour débuter?</a><ul>
+<li><a class="reference internal" href="#installation-sous-windows">Installation sous Windows</a></li>
+<li><a class="reference internal" href="#installation-sous-linux">Installation sous Linux</a></li>
+<li><a class="reference internal" href="#installation-sous-macosx">Installation sous MacOSX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tester-l-installation-de-mapnik">Tester l&#8217;installation de Mapnik</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="about_mapnik.html"
+                        title="Chapitre précédent">Mapnik</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="install_postgis_database.html"
+                        title="Chapitre suivant">Installation de la base PostGIS</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="debuter">
+<h1>Débuter<a class="headerlink" href="#debuter" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Après avoir lu ce document, vous devriez être capable de créer un rendu de
+carte simple avec Python ou C++.</p>
+<p>TODO: Ajouter l&#8217;image finale obtenue</p>
+<div class="section" id="de-quoi-a-t-on-besoin-pour-debuter">
+<h2>De quoi a-t-on besoin pour débuter?<a class="headerlink" href="#de-quoi-a-t-on-besoin-pour-debuter" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Premièrement, vous devez installer la bibliothèque Mapnik sur votre système.
+Il y a deux manières basiques de le faire, vous pouvez télécharger des binaires
+(des exécutables) ou compiler votre librairie vous même depuis les sources.
+L&#8217;installation depuis les sources est nettement plus comlexe et est documentée
+dans Lien vers le document</p>
+<p>L&#8217;installation dépend de votre système d&#8217;exploitation et les sections suivantes
+décrivent le processus.</p>
+<div class="section" id="installation-sous-windows">
+<h3>Installation sous Windows<a class="headerlink" href="#installation-sous-windows" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Installer Mapnik sous Windows suit les étapes suivantes:</p>
+<ol class="arabic simple">
+<li>Installer les logiciels prérequis</li>
+<li>Télécharger et décompresser la bibliothèque Mapnik</li>
+<li>Configurez votre système et / ou les variables utilisateurs de votre
+environnement</li>
+</ol>
+<p>Chacun de ces étapes est définie .. ici ..!</p>
+</div>
+<div class="section" id="installation-sous-linux">
+<h3>Installation sous Linux<a class="headerlink" href="#installation-sous-linux" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La plupart des distributions modernes de Linux inclut des binaires Mapnik dans
+leurs dépôts. La méthode d&#8217;installation dépend de votre distribution:</p>
+<ul>
+<li><p class="first">Debian ou Ubuntu</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># aptitude install python-mapnik</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Fedora</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># yum install mapnik-python</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Archlinux</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># pacman -S mapnik</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="installation-sous-macosx">
+<h3>Installation sous MacOSX<a class="headerlink" href="#installation-sous-macosx" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dane Springmeyer héberge et compile généreusement les binaires Mapnik pour
+MacOSX, vous pouvez retrouver plus d&#8217;informations sur la page de téléchargement
+<a class="reference external" href="http://dbsgeo.com/downloads/">http://dbsgeo.com/downloads/</a>.</p>
+</div>
+</div>
+<div class="section" id="tester-l-installation-de-mapnik">
+<h2>Tester l&#8217;installation de Mapnik<a class="headerlink" href="#tester-l-installation-de-mapnik" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La manière la plus simple de faire un test pour vérifier que vous avez installé
+et configuré avec succès Mapnik est de démarrer l&#8217;interpréteur Python et
+d&#8217;essayer d&#8217;importer la bibliothèque mapnik:</p>
+<div class="highlight-python"><pre>$ python Python 2.6.5 (r265:79063, Apr  1 2010, 05:28:39) [GCC 4.4.3 20100316
+(prerelease)] on linux2 Type "help", "copyright", "credits" or "license" for
+more information.  &gt;&gt;&gt; import mapnik &gt;&gt;&gt;</pre>
+</div>
+<p>S&#8217;il n&#8217;y a pas d&#8217;erreurs ou de complaintes, vous êtes sur la bonne voie. Vous
+pouvez aussi essayer de trouver la version de Mapnik que vous utilisez
+actuellement en exécutant le code suivant:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mapnik</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">mapnik_version</span><span class="p">()</span> <span class="mi">701</span> <span class="c"># Human readable version</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapnik</span><span class="o">.</span><span class="n">mapnik_version_string</span><span class="p">()</span> <span class="s">&#39;0.7.1&#39;</span>
+</pre></div>
+</div>
+<p>C&#8217;est bon, vous êtes prêt à créer votre première carte en utilisant le langage
+Python.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="install_postgis_database.html" title="Installation de la base PostGIS"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="about_mapnik.html" title="Mapnik"
+             >précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

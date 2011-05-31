@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation de la base PostGIS &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Alimenter la base de données PostGIS avec des données géographiques" href="load_postgis_database.html" />
+    <link rel="prev" title="Débuter" href="getting_started.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="load_postgis_database.html" title="Alimenter la base de données PostGIS avec des données géographiques"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Débuter"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table des matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation de la base PostGIS</a><ul>
+<li><a class="reference internal" href="#installer-postgresql-and-postgis">Installer Postgresql and PostGIS</a></li>
+<li><a class="reference internal" href="#configurer-le-serveur-postgresql">Configurer le serveur PostgreSQL</a></li>
+<li><a class="reference internal" href="#configurer-les-parametres-du-noyau-d-execution">Configurer les paramètres du noyau d&#8217;exécution</a></li>
+<li><a class="reference internal" href="#redemarrer-le-serveur-postgresql">Redémarrer le serveur PostgreSQL</a></li>
+<li><a class="reference internal" href="#creer-la-base-de-donnees-postgresql">Créer la base de données PostgreSQL</a></li>
+<li><a class="reference internal" href="#appliquer-les-extensions-postgis-a-la-base-de-donnees">Appliquer les extensions PostGIS à la base de données</a></li>
+<li><a class="reference internal" href="#permettre-la-mise-a-jour-des-donnees-openstreetmap">Permettre la mise à jour des données OpenStreetMap</a></li>
+<li><a class="reference internal" href="#definir-le-srid-pour-la-base-de-donnees-postgis">Définir le SRID pour la base de données PostGIS</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="Chapitre précédent">Débuter</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="load_postgis_database.html"
+                        title="Chapitre suivant">Alimenter la base de données PostGIS avec des données géographiques</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation-de-la-base-postgis">
+<h1>Installation de la base PostGIS<a class="headerlink" href="#installation-de-la-base-postgis" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="installer-postgresql-and-postgis">
+<h2>Installer Postgresql and PostGIS<a class="headerlink" href="#installer-postgresql-and-postgis" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Est-ce que tout est à jour sur notre système?</p>
+<div class="highlight-python"><pre>sudo aptitude update
+sudo aptitude safe-upgrade</pre>
+</div>
+<p>Installer PostgreSQL et l&#8217;extension PostGIS pour permettre d&#8217;utiliser des
+requêtes géographiques.</p>
+<div class="highlight-python"><pre>sudo aptitude install postgresql-8.4-postgis postgresql-contrib-8.4
+sudo aptitude install postgresql-server-dev-8.4
+sudo aptitude install build-essential libxml2-dev
+sudo aptitude install libgeos-dev libpq-dev libbz2-dev proj</pre>
+</div>
+</div>
+<div class="section" id="configurer-le-serveur-postgresql">
+<h2>Configurer le serveur PostgreSQL<a class="headerlink" href="#configurer-le-serveur-postgresql" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Editer le fichier de configuration situé dans
+/etc/postgresql/8.4/main/postgresql.conf pour définir certains des
+paramètres par défaut. Ces changements aident lorsque l&#8217;on doit gérer des grandes
+quantités de données telles qu&#8217;on peut les trouver dans certaines bases de
+données géographiques.</p>
+<p>Ces changements sont à effectuer à quatre endroits dans le fichier de
+configuration.</p>
+<div class="highlight-python"><pre>shared_buffers = 128MB # 16384 for 8.1 and earlier
+checkpoint_segments = 20
+maintenance_work_mem = 256MB # 256000 for 8.1 and earlier
+autovacuum = off</pre>
+</div>
+</div>
+<div class="section" id="configurer-les-parametres-du-noyau-d-execution">
+<h2>Configurer les paramètres du noyau d&#8217;exécution<a class="headerlink" href="#configurer-les-parametres-du-noyau-d-execution" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Editer /etc/sysctl.conf pour définir les paramètres du noyau après un
+redémarrage.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kernel</span><span class="o">.</span><span class="n">shmmax</span><span class="o">=</span><span class="mi">268435456</span>
+</pre></div>
+</div>
+<p>Ensuite, appliquer ce même paramètre du noyau maintenant mais sans redémarrer.</p>
+<div class="highlight-python"><pre>sudo sysctl kernel.shmmax=268435456</pre>
+</div>
+</div>
+<div class="section" id="redemarrer-le-serveur-postgresql">
+<h2>Redémarrer le serveur PostgreSQL<a class="headerlink" href="#redemarrer-le-serveur-postgresql" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Redémarrer le serveur PostgreSQL pour prendre en compte les modifications de configuration.</p>
+<div class="highlight-python"><pre>sudo /etc/init.d/postgresql-8.4 restart</pre>
+</div>
+<p>Le serveur de base de données devrait redémarrer sans messages d&#8217;erreurs ou
+d&#8217;avertissements</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">* Restarting PostgreSQL 8.4 database server</div>
+<div class="line-block">
+<div class="line">...done.</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="creer-la-base-de-donnees-postgresql">
+<h2>Créer la base de données PostgreSQL<a class="headerlink" href="#creer-la-base-de-donnees-postgresql" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Créer la base de données nommée &#8220;gis&#8221;. Certains des futurs outils supposerons
+que vous utilisez ce nom de base de données. Substituer votre nom d&#8217;utilisateur
+à la place de &#8220;username&#8221; dans les deux cas suivants. Ce nom va être celui de
+l&#8217;utilisateur qui va générer les cartes avec mapnik.</p>
+<div class="highlight-python"><pre>sudo -u postgres -i
+createuser username # answer yes for superuser
+createdb -E UTF8 -O username gis
+createlang plpgsql gis
+exit</pre>
+</div>
+</div>
+<div class="section" id="appliquer-les-extensions-postgis-a-la-base-de-donnees">
+<h2>Appliquer les extensions PostGIS à la base de données<a class="headerlink" href="#appliquer-les-extensions-postgis-a-la-base-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Appliquer les extensions PostGIS à la base de données.</p>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/postgis.sql -d gis</pre>
+</div>
+<p>La réponse devrait finir avec beaucoup de lignes du type</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">...</div>
+<div class="line">CREATE FUNCTION</div>
+<div class="line">COMMIT</div>
+</div>
+</div></blockquote>
+<p>puis lancer</p>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql -d gis</pre>
+</div>
+<p>Substituer votre nom d&#8217;utilisateur &#8220;username&#8221; dans les deux emplacements de la
+ligne suivante. C&#8217;est cet utilisateur qui doit être utilisé pour générer les
+cartes avec mapnik.</p>
+<div class="highlight-python"><pre>echo "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE
+spatial_ref_sys OWNER TO username;" | psql -d gis</pre>
+</div>
+<p>La réponse devrait être du type</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">ALTER TABLE</div>
+<div class="line">ALTER TABLE</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="permettre-la-mise-a-jour-des-donnees-openstreetmap">
+<h2>Permettre la mise à jour des données OpenStreetMap<a class="headerlink" href="#permettre-la-mise-a-jour-des-donnees-openstreetmap" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cette étape optionnelle est seulement requise si vous prévoyez de faire des
+mises à jour régulières de votre donnée OpenStreetMap. Activer pour cela le
+module intarray pour pouvoir faire la mise à niveau de la base de manière
+journalière, horaire ou par minute en utilisant les fichiers .osc de
+OpenStreetMap.</p>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/_int.sql -d gis</pre>
+</div>
+<p>Cela renvoie de multiples lignes du type</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">...</div>
+<div class="line">CREATE FUNCTION</div>
+<div class="line">CREATE OPERATOR CLASS</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="definir-le-srid-pour-la-base-de-donnees-postgis">
+<h2>Définir le SRID pour la base de données PostGIS<a class="headerlink" href="#definir-le-srid-pour-la-base-de-donnees-postgis" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cette étape est maintenant inutile normalement, spatial_ref_sys.sql contenant
+déjà la référence de la projection. Elle est gardée pour mémoire.</p>
+<p>Définir le SRID (Spatial Reference IDentifier) sur la nouvelle base de données.</p>
+<div class="highlight-python"><pre>psql -f ~/bin/osm2pgsql/900913.sql -d gis</pre>
+</div>
+<p>Le retour devrait être du type</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">INSERT 0 1</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="load_postgis_database.html" title="Alimenter la base de données PostGIS avec des données géographiques"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Débuter"
+             >précédent</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

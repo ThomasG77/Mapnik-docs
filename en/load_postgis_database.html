@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Load PostGIS Database with Initial Geographic Data &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Install Mapnik Library Prerequisites" href="install_mapnik_library_prereq.html" />
+    <link rel="prev" title="Install PostGIS Database" href="install_postgis_database.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="install_mapnik_library_prereq.html" title="Install Mapnik Library Prerequisites"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install_postgis_database.html" title="Install PostGIS Database"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Load PostGIS Database with Initial Geographic Data</a><ul>
+<li><a class="reference internal" href="#openstreetmap-planet-file">OpenStreetMap Planet File</a><ul>
+<li><a class="reference internal" href="#aquire-the-planet-file">Aquire the Planet File</a></li>
+<li><a class="reference internal" href="#install-the-planet-file">Install the Planet File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#openstreetmap-extract-file">OpenStreetMap Extract File</a><ul>
+<li><a class="reference internal" href="#aquire-the-extract-file">Aquire the Extract File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install_postgis_database.html"
+                        title="previous chapter">Install PostGIS Database</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install_mapnik_library_prereq.html"
+                        title="next chapter">Install Mapnik Library Prerequisites</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="load-postgis-database-with-initial-geographic-data">
+<h1>Load PostGIS Database with Initial Geographic Data<a class="headerlink" href="#load-postgis-database-with-initial-geographic-data" title="Permalink to this headline">¶</a></h1>
+<p>There are several ways to populate your geographic database.  Choose
+only one of the following:</p>
+<ul>
+<li><p class="first">OpenStreetMap &#8220;Planet&#8221; File</p>
+<p>The OpenStreetMap &#8220;Planet&#8221; file contains data for the entire planet.
+This is a large file and can stress computers ( and first-time users
+).</p>
+</li>
+<li><p class="first">OpenStreetMap &#8220;Extract&#8221; File</p>
+<p>OpenStreetMap &#8220;Extract&#8221; files contain the OpenStreetMap data for a
+single region, usually a single country, state or province.  These
+are more managable than the &#8220;Planet&#8221; file while still often being
+substantial.</p>
+</li>
+<li><p class="first">OpenStreetMap API Bounding Box</p>
+<p>Smaller areas, sometimes town-sized, can be downloaded through the
+OpenStreetMap API.</p>
+</li>
+<li><p class="first">Postgresql dump file</p>
+</li>
+</ul>
+<div class="section" id="openstreetmap-planet-file">
+<h2>OpenStreetMap Planet File<a class="headerlink" href="#openstreetmap-planet-file" title="Permalink to this headline">¶</a></h2>
+<p>Aquire the complete OpenStreetMap database, also called the &#8220;planet
+file&#8221; and load it in to the PostGIS database.</p>
+<div class="section" id="aquire-the-planet-file">
+<h3>Aquire the Planet File<a class="headerlink" href="#aquire-the-planet-file" title="Permalink to this headline">¶</a></h3>
+<p>A new &#8220;planet&#8221; file is published approximately each week. The mirror
+and archives of the &#8220;planet&#8221; files are found at
+<a class="reference external" href="http://planet.openstreetmap.org/">http://planet.openstreetmap.org/</a> . In July 2010 the planet file was
+about 10GB in length. If you are not interested in the entire planet
+you can choose to download an extract file instead.</p>
+</div>
+<div class="section" id="install-the-planet-file">
+<h3>Install the Planet File<a class="headerlink" href="#install-the-planet-file" title="Permalink to this headline">¶</a></h3>
+<p>Using osm2pgsql or another tool.</p>
+</div>
+</div>
+<div class="section" id="openstreetmap-extract-file">
+<h2>OpenStreetMap Extract File<a class="headerlink" href="#openstreetmap-extract-file" title="Permalink to this headline">¶</a></h2>
+<p>OpenStreetMap Extract files typically include a single country, state
+or province.  They are published periodically by various sites
+including</p>
+<ul class="simple">
+<li><a class="reference external" href="http://download.geofabrik.de/osm/">http://download.geofabrik.de/osm/</a></li>
+<li><a class="reference external" href="http://download.cloudmade.com/">http://download.cloudmade.com/</a></li>
+<li>others</li>
+</ul>
+<div class="section" id="aquire-the-extract-file">
+<h3>Aquire the Extract File<a class="headerlink" href="#aquire-the-extract-file" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="install_mapnik_library_prereq.html" title="Install Mapnik Library Prerequisites"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install_postgis_database.html" title="Install PostGIS Database"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

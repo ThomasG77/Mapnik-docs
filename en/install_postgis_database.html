@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Install PostGIS Database &mdash; Mapnik v1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Mapnik v1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Load PostGIS Database with Initial Geographic Data" href="load_postgis_database.html" />
+    <link rel="prev" title="Getting Started" href="getting_started.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: #4F96D2; text-align: left; padding: 5px 5px 10px 10px">
+    <a href="index.html">
+    <img src="_static/images/mapnik-logo.png" border="0" alt="Mapnik"/></a>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="load_postgis_database.html" title="Load PostGIS Database with Initial Geographic Data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Install PostGIS Database</a><ul>
+<li><a class="reference internal" href="#install-postgresql-and-postgis">Install Postgresql and PostGIS</a></li>
+<li><a class="reference internal" href="#configure-the-postgresql-server">Configure the Postgresql Server</a></li>
+<li><a class="reference internal" href="#configure-runtime-kernel-parameters">Configure runtime kernel parameters</a></li>
+<li><a class="reference internal" href="#restart-the-postgresql-server">Restart the Postgresql Server</a></li>
+<li><a class="reference internal" href="#create-the-postgresql-database">Create the Postgresql Database</a></li>
+<li><a class="reference internal" href="#apply-the-postgis-extensions-to-the-database">Apply the PostGIS Extensions to the Database</a></li>
+<li><a class="reference internal" href="#enable-openstreetmap-updates">Enable OpenStreetMap Updates</a></li>
+<li><a class="reference internal" href="#set-srid-for-postgis-database">Set SRID for PostGIS Database</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="getting_started.html"
+                        title="previous chapter">Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="load_postgis_database.html"
+                        title="next chapter">Load PostGIS Database with Initial Geographic Data</a></p>
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="install-postgis-database">
+<h1>Install PostGIS Database<a class="headerlink" href="#install-postgis-database" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-postgresql-and-postgis">
+<h2>Install Postgresql and PostGIS<a class="headerlink" href="#install-postgresql-and-postgis" title="Permalink to this headline">¶</a></h2>
+<p>Is everything up to date on your system?</p>
+<div class="highlight-python"><pre>sudo aptitude update
+sudo aptitude safe-upgrade</pre>
+</div>
+<p>Install Postgresql and the PostGIS extensions to enable geographical
+queries.</p>
+<div class="highlight-python"><pre>sudo aptitude install postgresql-8.4-postgis postgresql-contrib-8.4
+sudo aptitude install postgresql-server-dev-8.4
+sudo aptitude install build-essential libxml2-dev
+sudo aptitude install libgeos-dev libpq-dev libbz2-dev proj</pre>
+</div>
+</div>
+<div class="section" id="configure-the-postgresql-server">
+<h2>Configure the Postgresql Server<a class="headerlink" href="#configure-the-postgresql-server" title="Permalink to this headline">¶</a></h2>
+<p>Edit the configuration file at
+/etc/postgresql/8.4/main/postgresql.conf to set some reasonable
+defaults.  These changes help when dealing with large quantities of
+data that are found in geographic some databases.</p>
+<p>These edits are found in four places in the configuration file.</p>
+<div class="highlight-python"><pre>shared_buffers = 128MB # 16384 for 8.1 and earlier
+checkpoint_segments = 20
+maintenance_work_mem = 256MB # 256000 for 8.1 and earlier
+autovacuum = off</pre>
+</div>
+</div>
+<div class="section" id="configure-runtime-kernel-parameters">
+<h2>Configure runtime kernel parameters<a class="headerlink" href="#configure-runtime-kernel-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Edit /etc/sysctl.conf to set kernel parameters after a restart.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">kernel</span><span class="o">.</span><span class="n">shmmax</span><span class="o">=</span><span class="mi">268435456</span>
+</pre></div>
+</div>
+<p>Then apply the same kernel parameter now, without restarting.</p>
+<div class="highlight-python"><pre>sudo sysctl kernel.shmmax=268435456</pre>
+</div>
+</div>
+<div class="section" id="restart-the-postgresql-server">
+<h2>Restart the Postgresql Server<a class="headerlink" href="#restart-the-postgresql-server" title="Permalink to this headline">¶</a></h2>
+<p>Restart the postgresql database server to enable the configuration
+changes.</p>
+<div class="highlight-python"><pre>sudo /etc/init.d/postgresql-8.4 restart</pre>
+</div>
+<p>The database server should restart without errors or warnings</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">* Restarting PostgreSQL 8.4 database server</div>
+<div class="line-block">
+<div class="line">...done.</div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="create-the-postgresql-database">
+<h2>Create the Postgresql Database<a class="headerlink" href="#create-the-postgresql-database" title="Permalink to this headline">¶</a></h2>
+<p>Create a database called &#8220;gis&#8221;. Some of our future tools presume that
+you will use this database name. Substitute your username for
+&#8220;username&#8221; in two places below. This should be the username that will
+render maps with mapnik.</p>
+<div class="highlight-python"><pre>sudo -u postgres -i
+createuser username # answer yes for superuser
+createdb -E UTF8 -O username gis
+createlang plpgsql gis
+exit</pre>
+</div>
+</div>
+<div class="section" id="apply-the-postgis-extensions-to-the-database">
+<h2>Apply the PostGIS Extensions to the Database<a class="headerlink" href="#apply-the-postgis-extensions-to-the-database" title="Permalink to this headline">¶</a></h2>
+<p>Apply the PostGIS extensions to the postgresql database.</p>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/postgis.sql -d gis</pre>
+</div>
+<p>This should respond with many lines ending with</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">...</div>
+<div class="line">CREATE FUNCTION</div>
+<div class="line">COMMIT</div>
+</div>
+</div></blockquote>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/spatial_ref_sys.sql -d gis</pre>
+</div>
+<p>Substitute your username for &#8220;username&#8221; in two places in the next
+line. This should be the username that will render maps with mapnik.</p>
+<div class="highlight-python"><pre>echo "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE
+spatial_ref_sys OWNER TO username;" | psql -d gis</pre>
+</div>
+<p>Should reply with</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">ALTER TABLE</div>
+<div class="line">ALTER TABLE</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="enable-openstreetmap-updates">
+<h2>Enable OpenStreetMap Updates<a class="headerlink" href="#enable-openstreetmap-updates" title="Permalink to this headline">¶</a></h2>
+<p>This optional step is only required if you plan to use the
+OpenStreetMap regular data updates.  Enable intarray to enable updates
+through the OpenStreetMap .osc files for daily, hourly and minutely
+updates.</p>
+<div class="highlight-python"><pre>psql -f /usr/share/postgresql/8.4/contrib/_int.sql -d gis</pre>
+</div>
+<p>Replies with many lines ending with</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">...</div>
+<div class="line">CREATE FUNCTION</div>
+<div class="line">CREATE OPERATOR CLASS</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="set-srid-for-postgis-database">
+<h2>Set SRID for PostGIS Database<a class="headerlink" href="#set-srid-for-postgis-database" title="Permalink to this headline">¶</a></h2>
+<p>This step is now not needed anymore, spatial_ref_sys.sql already contains
+reference to the projection. Only here as a reminder.</p>
+<p>Set the Spatial Reference Identifier (SRID) on the new database.</p>
+<div class="highlight-python"><pre>psql -f ~/bin/osm2pgsql/900913.sql -d gis</pre>
+</div>
+<p>Should reply with</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">INSERT 0 1</div>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="load_postgis_database.html" title="Load PostGIS Database with Initial Geographic Data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="getting_started.html" title="Getting Started"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a></li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
