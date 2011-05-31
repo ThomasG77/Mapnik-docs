@@ -1,0 +1,23 @@
+Le but est de créer un documentation unifiée sur Mapnik (consultable aussi hors ligne).
+Le contenu n'est pour le moment pas original.
+Il est issu de la traduction de la version anglaise auquel on a ajouté les "Getting Started" et "XML Getting Started" de la documentation sur Trac http://trac.mapnik.org/wiki/MapnikTutorials
+Nous ne sommes pas bien satisfait de la structure de la documentation anglaise et nous espèrons à l'avenir restructuré ce contenu.
+Nous voulons aussi garder la synchronisation entre les version anglaises et françaises de cette documentation.
+
+Pour visualiser cette documentation, allez sur http://thomasg77.github.com/Mapnik-docs/fr/index.html
+
+Si vous souhaitez contribuer pour améliorer la documentation, aller sur le dépôt GitHub dédié qui contient les sources https://github.com/ThomasG77/sphinx-docs
+
+
+
+
+
+This repo goal is to make a unified Mapnik documentation (available on-line too).
+For the moment, we don't create new contents but only import already available docs.
+We plan to organize better the existing docs for Mapnik.
+We also want to sync fr and en docs (and maybe other language if someone want).
+
+You can have a look on http://thomasg77.github.com/Mapnik-docs/en/index.html to view the generated html docs.
+
+If you want to improve Mapnik documentation, go on dedicated GitHub repo for sources https://github.com/ThomasG77/sphinx-docs
+
