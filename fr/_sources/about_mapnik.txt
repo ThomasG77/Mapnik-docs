@@ -3,23 +3,23 @@
 Mapnik
 ******
 
-Mapnik existe pour faire des belles cartes. Il utilise la `librairie AGG
-<http://www.antigrain.com/>`_ ou `la librairie Cairo
-<http://www.cairographics.org/>`_ et offre un rendu avec anti-aliasing
+Mapnik consiste à faire de belles cartes. Il utilise la `bibliothèque AGG
+<http://www.antigrain.com/>`_ ou `la bibliothèque Cairo
+<http://www.cairographics.org/>`_ et offre un rendu avec anticrénelage
 de première qualité avec une précision inférieure au pixel pour les données
 géographiques. Il a développé à partir de zéro en utilisant du C++ moderne
 et ne souffre donc pas de choix de conception hérités d'années d'existence.
 Quand il s'agit de gérer les tâches communes à la plupart des logiciels comme
 la gestion de la mémoire, les accès aux systèmes de fichiers, la gestion des
 expressions régulières ou bien d'autres fonctionnalités, Mapnik ne réinvente
-pas la roue, mais utilise les meilleures librairies standards de l'industrie
+pas la roue, mais utilise les meilleures bibliothèques standards de l'industrie
 logicielle issues de http://boost.org.
 
 
 Historique
 ==========
 
-Le projet Mapnik a commencé par un après-midi chaud 2005 par Artem Pavlenko.
+Le projet Mapnik a été commencé en 2005 par un chaud après-midi de juin, par Artem Pavlenko.
 La première version a été mise à disposition ...
 
 La version courante est la 0.7.1 qui est disponible au téléchargement sur
@@ -36,9 +36,9 @@ développement est organisé comme un wiki qui contient beaucoup d'informations
 utiles, et où vous pouvez contribuer librement en vous
 `enregistrant <http://trac.mapnik.org/register>`_.
 
-Vous pouvez aussi poser des questions sur les mailing lists `mapnik-users
+Vous pouvez aussi poser des questions sur les listes de diffusion `mapnik-users
 <http://lists.berlios.de/mailman/listinfo/mapnik-users>`_ (mapnik-utilisateurs)
-et si vous souhaitez contribuer au développement de Mapnik en allant sur
+et si vous souhaitez contribuer au développement de Mapnik allez sur
 `mapnik-devel
 <http://lists.berlios.de/mailman/listinfo/mapnik-devel>`_
 (mapnik-développeurs). En suivant ces liens vous trouverez aussi les archives
@@ -46,7 +46,7 @@ de ces listes, que vous pourrez consulter avant de poser une question. Vous
 pouvez suivre ces listes sur `Nabble
 <http://old.nabble.com/Mapnik-f28006.html>`_.
 
-Si vous préférez une communication plus directe , vous pouvez nous trouvez dans
+Si vous préférez une communication plus directe, vous pouvez nous trouvez dans
 la salle **#mapnik** sur irc.freenode.net, n'hésitez pas à venir pour nous
 poser vos questions quand vous voulez.
 
@@ -63,14 +63,14 @@ Formats de données supportés
 
 Mapnik utilise une architecture basée sur les plugins pour lire les différentes
 sources de données. Les plugins courants, considérés comme stables et compilés
-par défaut, sont:
+par défaut, sont :
 
 * *shape* - permet l'accès aux fichiers `Shape ESRI
   <http://en.wikipedia.org/wiki/Shapefile>`_
 * *postgis* - permet l'accès aux données géospatiales issues de `PostGIS
   <http://en.wikipedia.org/wiki/PostGIS>`_, l'extension spatiale pour
   `PostgreSQL <http://en.wikipedia.org/wiki/PostgreSQL>`_
-* *raster* - permet l'usage d'images TIFF rasters simples ou tuilées
+* *raster* - permet l'usage d'images raster TIFF simples ou tuilées
 
 Les autres plugins ne sont pas instables mais comme ils ont été rajoutés plus
 récemment, ils peuvent encore comporter quelques erreurs:
@@ -100,6 +100,6 @@ Futur
 =====
 
 Un grand nombre de développeurs et de contributeurs développent activement
-*mapnik2* qui deviendra dans la version **0.8.0**. De plus, il est
+*mapnik2* qui deviendra la version **0.8.0**. De plus, il est
 planifié que la version **0.7.2** sorte prochainement.
 
