@@ -7,7 +7,7 @@ Mapnik consiste à faire de belles cartes. Il utilise la `bibliothèque AGG
 <http://www.antigrain.com/>`_ ou `la bibliothèque Cairo
 <http://www.cairographics.org/>`_ et offre un rendu avec anticrénelage
 de première qualité avec une précision inférieure au pixel pour les données
-géographiques. Il a développé à partir de zéro en utilisant du C++ moderne
+géographiques. Il a été développé à partir de zéro en utilisant du C++ moderne
 et ne souffre donc pas de choix de conception hérités d'années d'existence.
 Quand il s'agit de gérer les tâches communes à la plupart des logiciels comme
 la gestion de la mémoire, les accès aux systèmes de fichiers, la gestion des
